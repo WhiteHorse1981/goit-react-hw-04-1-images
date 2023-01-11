@@ -35,7 +35,7 @@ export const App = () => {
           setStatus(FETCH_STATUS.Rejected);
           return;
         }
-        setImages([...images, ...data.hits]);
+        setImages(page > 1 ? [...images, ...data.hits] : data.hits);
         setPage(page);
         setStatus(FETCH_STATUS.Resolved);
         setUploadedPicturesAmount(data.hits.length);
@@ -50,7 +50,7 @@ export const App = () => {
   const handleSubmit = inputQuery => {
     setPage(1);
     setSubmitQuery(inputQuery);
-    setImages([]);
+    // setImages([]);
   };
 
   const hendleLoadMore = () => {
@@ -63,7 +63,9 @@ export const App = () => {
 
       {status === FETCH_STATUS.Rejected && <RequestFailed />}
 
-      {status === FETCH_STATUS.Resolved && <ImageGallery images={images} />}
+      {(status === FETCH_STATUS.Resolved || page > 1) && (
+        <ImageGallery images={images} />
+      )}
       {status === FETCH_STATUS.Pending && <Loader />}
 
       {uploadedPicturesAmount >= requestedPictures &&
