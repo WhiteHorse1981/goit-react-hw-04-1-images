@@ -23,7 +23,7 @@ export const App = () => {
   const [uploadedPicturesAmount, setUploadedPicturesAmount] = useState(null);
 
   useEffect(() => {
-    if (!submitQuery) {
+    if (submitQuery === '') {
       return;
     }
     const fetchGallery = async () => {
@@ -67,7 +67,6 @@ export const App = () => {
         <ImageGallery images={images} />
       )}
       {status === FETCH_STATUS.Pending && <Loader />}
-
       {uploadedPicturesAmount >= requestedPictures &&
         status === FETCH_STATUS.Resolved && (
           <Button onLoadImg={hendleLoadMore} />
