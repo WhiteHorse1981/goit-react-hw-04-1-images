@@ -23,7 +23,7 @@ export const App = () => {
   const [uploadedPicturesAmount, setUploadedPicturesAmount] = useState(null);
 
   useEffect(() => {
-    if (submitQuery === '') {
+    if (!submitQuery) {
       return;
     }
     const fetchGallery = async () => {
