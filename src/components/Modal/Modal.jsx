@@ -7,11 +7,11 @@ const modalRoot = document.querySelector('#modal');
 
 export const Modal = ({ onCloseModal, srcImg, altImg }) => {
   useEffect(() => {
-    console.log('mount');
+    // console.log('mount');
     window.addEventListener('keydown', handleCloseModalEsc);
 
     return () => {
-      console.log('unmount');
+      // console.log('unmount');
       window.removeEventListener('keydown', handleCloseModalEsc);
     };
   });
